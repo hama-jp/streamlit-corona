@@ -16,5 +16,9 @@ pref=st.multiselect(
     list(df.columns[1:]),
     ['Tokushima', 'Kagawa', 'Ehime', 'Kochi']
 )
-fig = px.line(df[-days:], x='Date', y=pref, title="新型コロナ陽性者数の推移")
-st.write(fig)
+
+if not pref:
+    st.error('少なくとも一つは選んでください。')
+else:
+    fig = px.line(df[-days:], x='Date', y=pref, title="新型コロナ陽性者数の推移")
+    st.write(fig)
